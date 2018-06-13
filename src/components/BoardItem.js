@@ -6,13 +6,35 @@ export default class BoardItem extends Component {
         super(props)
         this.state = {
             player: null,
-            location: []
+            location: [],
+            color: 'white'
+        }
+    this.updatePlayerPiece = this.updatePlayerPiece.bind(this)
+    }
+
+    componentDidMount(){
+        const { eachLocation } = this.props
+        const { location } = this.state
+        this.setState({
+            location: location.concat(eachLocation)
+        })
+    }
+
+    updatePlayerPiece(){
+        if(this.state.player === null){
+            this.setState({
+                player: this.props.currentPlayer,
+                color: this.props.currentPlayer ? 'green' : 'red'
+            }, () => {
+             console.log('state of item ', this.state)   
+             this.props.updatePlayer()})
         }
     }
 
     render(){
+        const {color} = this.state
         return(
-            <div className="square"></div>
+            <div className="square" onClick={this.updatePlayerPiece} style={{backgroundColor: color }}></div>
         )
     }
 }
