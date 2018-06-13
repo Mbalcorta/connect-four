@@ -25,7 +25,12 @@ export default class Board extends Component {
     let board = []
     for(var column = 0; column < 6; column++){
       for(var row = 0; row < 7; row++){
-        board.push([column, row])
+        board.push({
+            [column]: {
+                location: [column, row],
+                color: 'white'
+            }
+        })
       }
     }
     this.setState({board: board.concat(this.state.board)})
@@ -34,8 +39,11 @@ export default class Board extends Component {
   updatePlayer(){
         this.setState({
             currentPlayer: this.state.currentPlayer ? 0 : 1
-        }, () => { 'state of board', console.log(this.state)})
+        }, () => {
+            console.log(this.state.board[0])
+        })
   }
+
 
   render() {
     const { board, currentPlayer } = this.state
@@ -45,8 +53,7 @@ export default class Board extends Component {
             <div className='boardContainer'>
                 {board.map(function(eachElement, index) {
                     return (<BoardItem key={index} eachLocation={eachElement} updatePlayer={() => this.updatePlayer()} currentPlayer={currentPlayer}/>)
-                }, this)}
-                
+                }, this)}  
             </div>
         </div>
     )
