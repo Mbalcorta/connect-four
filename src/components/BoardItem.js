@@ -12,7 +12,7 @@ export default class BoardItem extends Component {
 
     render(){
         return(
-            <div className="square">Hello</div>
+            <div className="square"></div>
         )
     }
 }
