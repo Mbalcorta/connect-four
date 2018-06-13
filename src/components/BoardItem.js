@@ -21,16 +21,18 @@ export default class BoardItem extends Component {
     }
 
     updatePlayerPiece(){
-        if(this.state.player === null){
-            this.setState({
-                player: this.props.currentPlayer,
-                color: this.props.currentPlayer ? 'green' : 'red'
-            }, () => {
-             console.log('state of item ', this.state)   
-             this.props.updatePlayer()})
-        }
+        this.setState({
+            player: this.props.currentPlayer,
+            color: this.props.currentPlayer ? 'green' : 'red'
+        }, () => {
+            console.log('state of item ', this.state)   
+            this.props.updatePlayer()}
+        )
     }
 
+      //need to implement so when row clicked items show up at bottom or the column
+      // only trigger update on botton row
+  
     render(){
         const {color} = this.state
         return(
