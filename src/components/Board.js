@@ -8,8 +8,11 @@ export default class Board extends Component {
     super(props)
 
     this.state = {
-        board: []
+        board: [],
+        currentPlayer: 1
       }
+
+    this.updatePlayer = this.updatePlayer.bind(this)
   }
 
   componentDidMount(){
@@ -25,20 +28,24 @@ export default class Board extends Component {
         board.push([column, row])
       }
     }
-    //this point create each box
     this.setState({board: board.concat(this.state.board)})
   }
   
+  updatePlayer(){
+        this.setState({
+            currentPlayer: this.state.currentPlayer ? 0 : 1
+        }, () => { 'state of board', console.log(this.state)})
+  }
 
   render() {
+    const { board, currentPlayer } = this.state
      return(
         <div>
             <h1> Connect Four </h1>
             <div className='boardContainer'>
-            {/* needs to loop each element and feed in each location*/}
-                {this.state.board.map(function(eachElement, index) {
-                    return (<BoardItem key={index} eachLocation={eachElement}/>)
-                })}
+                {board.map(function(eachElement, index) {
+                    return (<BoardItem key={index} eachLocation={eachElement} updatePlayer={() => this.updatePlayer()} currentPlayer={currentPlayer}/>)
+                }, this)}
                 
             </div>
         </div>
