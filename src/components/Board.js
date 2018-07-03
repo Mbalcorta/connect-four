@@ -37,11 +37,11 @@ export default class Board extends Component {
   }
   
   updatePlayer(){
-        this.setState({
-            currentPlayer: this.state.currentPlayer ? 0 : 1
-        }, () => {
-            console.log(this.state.board[0])
-        })
+    this.setState({
+        currentPlayer: this.state.currentPlayer ? 0 : 1
+    }, () => {
+        console.log(this.state.board[0])
+    })
   }
 
 

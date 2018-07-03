@@ -1,5 +1,5 @@
-import React, { Component} from "react";
-import "./App.css";
+import React, { Component} from "react"
+import "./App.css"
 import Board from './Board.js'
 
 class App extends Component{
@@ -16,7 +16,7 @@ class App extends Component{
       <div className="App">
         <Board />
       </div>
-    );
+    )
   }
 }
 
